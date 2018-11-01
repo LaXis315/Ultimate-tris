@@ -18,8 +18,6 @@ void draw(){
   //nello stato 0 il giocatore é libero di mettere il segno in qualsiasi tris libero  
   if(mousep && tris[pos].attivo == 0 && stato == 0){
     mousep = false;
-    x = map(mouseX,tris[pos].x,tris[pos].x+tris[pos].l,0,3);
-    y = map(mouseY,tris[pos].y,tris[pos].y+tris[pos].l,0,3);
     pos2 = int(y)*3+int(x);
     if(x < 3 && y < 3 && x >= 0 && y >= 0 && (tris[pos2].attivo == 0 || tris[pos2].attivo == 1)){ //caso 1: il tris nuovo non é vinto o patto
       if(int(p) == 0)
@@ -41,7 +39,7 @@ void draw(){
         tris[pos].segno[pos2] = -1;
       //rimango nello stato 0  
       p = !p;
-      rend = true;
+      reset();
       controllotris(tris[pos],pos);
     }
     rend = true;
@@ -50,8 +48,6 @@ void draw(){
   // qua inizia il vero gioco
   else if(stato == 1 && mousep && pos == pos2){  
     mousep = false;
-    x = map(mouseX,tris[pos].x,tris[pos].x+tris[pos].l,0,3);
-    y = map(mouseY,tris[pos].y,tris[pos].y+tris[pos].l,0,3);
     if(x < 3 && y < 3 && x >= 0 && y >= 0 && (tris[int(y)*3+int(x)].attivo == 0 || tris[int(y)*3+int(x)].attivo == 1) && tris[pos].segno[int(y)*3+int(x)] == 0){
       pos2 = int(y)*3+int(x); //calcolo la posizione che ho cliccato e ci metto una x o un 0 in base  al turno
       if(int(p) == 0)
@@ -76,6 +72,7 @@ void draw(){
         
       p = !p;
       stato = 0;
+      reset();
       rend = true;
       controllotris(tris[pos],pos);
     }
