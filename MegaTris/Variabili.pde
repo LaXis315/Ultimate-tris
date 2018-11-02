@@ -1,5 +1,5 @@
 //gioco
-int stato = 3; // stato gioco di p
+int stato = 0; // stato gioco di p
 /*
 Caso 0: Inizio gioco, il p1 sceglie il tris di inizio
 Caso 1: Adesso il tris viene scelto in base a dove si gioca in ogni tris
