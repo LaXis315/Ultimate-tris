@@ -5,6 +5,19 @@ void mousePressed(){
   pos = int(y)*3+int(x);  //mappo il mouse per capire quale tris é stato scelto
   x = map(mouseX,tris[pos].x,tris[pos].x+tris[pos].l,0,3);
   y = map(mouseY,tris[pos].y,tris[pos].y+tris[pos].l,0,3);
+  pos3 = int(y)*3+int(x);;
+}
+
+void cambiosegno(){
+  //adesso che siamo sicuri che il giocatore ha giocato nel tris giusto il pos2 puó essere sovrascritto
+  pos2 = pos3;
+  if(int(p) == 0)
+    tris[pos].segno[pos2] = 1;
+  else
+    tris[pos].segno[pos2] = -1;
+        
+  p = !p;
+  reset();  
 }
 
 void controllotris(Tris trisc,int pos){ //controlla il trisc(trisc) per vedere se é stato vinto
@@ -42,21 +55,24 @@ void controlloultimate(){
       stato = 3;
     }  
   }
-  for(int i = 0; i < 3; i++){//controllo verticali e orizzontali
+  //controllo verticali e orizzontali
+  for(int i = 0; i < 3; i++){
     if(tris[3*i].attivo+tris[3*i+1].attivo+tris[3*i+2].attivo == 6 || tris[i].attivo+tris[i+3].attivo+tris[i+6].attivo == 6)
       vittoria = 1;
     else if(tris[3*i].attivo+tris[3*i+1].attivo+tris[3*i+2].attivo == -6 || tris[i].attivo+tris[i+3].attivo+tris[i+6].attivo == -6)
       vittoria = 2;
   }
+  //controllo le diagonali
   if(tris[0].attivo + tris[4].attivo + tris[8].attivo == 6 || tris[2].attivo + tris[4].attivo + tris[6].attivo == 6)
     vittoria = 1;
   else if(tris[0].attivo + tris[4].attivo + tris[8].attivo == -6 || tris[2].attivo + tris[4].attivo + tris[6].attivo == -6)
     vittoria = 2;  
-  if(vittoria != 0)
+    
+  if(vittoria == 1 || vittoria == 2)
     stato = 3;
 }
 
-void Render(){  //renderizza i tris e i contorni
+void Render(){  //renderizza tutto
   //tris
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 3; j++){ 
