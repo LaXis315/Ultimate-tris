@@ -1,5 +1,5 @@
 void setup(){
-  size(843,843);
+  size(843,843); //843,843 (SE SI CAMBIA GUARDARE IN VARIABILI)
   background(255);
   frameRate(60);
   trispng = loadImage("Tris.png");
@@ -73,9 +73,14 @@ void draw(){
     rend = true;
   }
   
+  //grazie a rend viene renderizzato tutto a schermo
+  if(rend == true){
+    rend = false;
+    background(255);
+    Render();
+  }
+  
   if(stato == 3){
-    //float r = sqrt(pow(mouseX-width/2,2)+pow(mouseY-height/2,2));
-    //float n = map(r,0,sqrt(pow(width,2)+pow(height,2))/2,127,255);
     background(255);
     stroke(0);
     textSize(50);
@@ -91,12 +96,5 @@ void draw(){
       fill(#791A00);
       text("PAREGGIO!",width/2-140,height/2);
     }
-  }
-  
-  //grazie a rend viene renderizzato tutto a schermo
-  if(rend == true){
-    rend = false;
-    background(255);
-    Render();
   }  
 }

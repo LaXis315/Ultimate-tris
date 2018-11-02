@@ -76,7 +76,7 @@ void Render(){  //renderizza tutto
   //tris
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 3; j++){ 
-      colorifondo(i*3+j);
+      colori(i*3+j);
       image(trispng,width*j/3+46,height*i/3+46,186,186);
     }
   }
@@ -86,40 +86,42 @@ void Render(){  //renderizza tutto
   else
   stroke(#76D827); //verde
   
-  strokeWeight(2);
-  line(0,280,width,280);
-  line(0,560,width,560);
-  line(280,0,280,height);
-  line(560,0,560,height);
+  strokeWeight(strokew);
+  line(0,height/3-1,width,height/3-1);
+  line(0,2*height/3-2,width,2*height/3-2);
+  line(width/3-1,0,width/3-1,height);
+  line(2*width/3-2,0,2*width/3-2,height);
   
   rendersegni();
   
 }
 
-void colorifondo(int i){
+void colori(int i){
+  strokeWeight(2); 
+  if(tris[i].attivo == 1){
+    fill(#FBFF46); //giallo
     if(!p)
       stroke(#76D827); //verde
     else
-      stroke(#E51523); //rosso 
-    if(tris[i].attivo == 2)
-      stroke(#76D827); //verde
-    else if(tris[i].attivo == -2)
       stroke(#E51523); //rosso
-    else if(tris[i].attivo == -1)
-      stroke(#791A00); //nero
+  }
+  else if(tris[i].attivo == 2){
+    fill(#76D827); //verde
+    stroke(#76D827); //verde
+  }
+  else if(tris[i].attivo == -2){
+    fill(#E51523); //rosso
+    stroke(#E51523); //rosso
+  }
+  else if(tris[i].attivo == -1){
+    fill(#791A00); //nero
+    stroke(#791A00); //nero
+  }
+  else{
+    fill(255);
+    stroke(255);
+  }
       
-    if(tris[i].attivo == 1)
-      fill(#FBFF46); //giallo
-    else if(tris[i].attivo == 2)
-      fill(#76D827); //verde
-    else if(tris[i].attivo == -2)
-      fill(#E51523); //rosso
-    else if(tris[i].attivo == -1)
-      fill(#791A00); //nero
-    else{
-      fill(255);
-      stroke(255);
-    }  
     rect(tris[i].x,tris[i].y,tris[i].l,tris[i].l);    
 }
 

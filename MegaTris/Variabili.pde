@@ -14,8 +14,10 @@ int vittoria = 0;  //quando vinci il gioco segno il vincitore  1 = giocatore 1; 
 
 
 //rendering
+int risoluzione = 843;  //SE SI CAMBIA RISOLUZIONE AGGIORNARE
 boolean rend = true; //se bisogna renderizzare qualcosa diventa vero
 PImage trispng,crosspng,circlepng; //immagine del tris
+int strokew = 7;
 
 //tris
 Tris [] tris = new Tris[9];
